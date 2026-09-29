@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: farmer_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-farmer_tracker}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-farmer_tracker}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - farmer_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: farmer_backend
+    restart: always
+    environment:
+      FLASK_ENV: production
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-farmer_tracker}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-super-jwt-secret-key-production-change-me}
+      SECRET_KEY: ${SECRET_KEY:-super-flask-secret-key-production-change-me}
+      CORS_ORIGINS: "*"
+    ports:
+      - "5000:5000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - farmer_network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: farmer_frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - farmer_network
+
+networks:
+  farmer_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
