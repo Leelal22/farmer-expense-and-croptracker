@@ -1,10 +1,10 @@
-# 🚜 FARMER EXPENSE & CROP TRACKER
+# FARMER EXPENSE & CROP TRACKER
 
 A production-ready full-stack web application designed to help farmers manage farms, crops, farming expenses, produce sales, harvest yields, activities, inventory, and real-time profitability from a single unified dashboard.
 
 ---
 
-## 📌 Problem Statement
+##  Problem Statement
 
 Farmers often track agricultural expenses manually using paper notebooks or informal spreadsheets. This makes it difficult to:
 - Track crop-wise investment vs return
@@ -17,7 +17,7 @@ Farmers often track agricultural expenses manually using paper notebooks or info
 
 ---
 
-## 🚀 Technology Stack
+##  Technology Stack
 
 ### **Frontend**
 - **Framework**: React.js 18 + Vite
@@ -47,7 +47,7 @@ Farmers often track agricultural expenses manually using paper notebooks or info
 
 ---
 
-## 🏛 System Architecture
+## System Architecture
 
 ```
                     ┌──────────────────────────┐
@@ -75,7 +75,7 @@ Farmers often track agricultural expenses manually using paper notebooks or info
 
 ---
 
-## 📂 Folder Structure
+## Folder Structure
 
 ```
 farmer-expense-crop-tracker/
@@ -119,7 +119,7 @@ farmer-expense-crop-tracker/
 
 ---
 
-## 🗄 Database Schema & Relationships
+##  Database Schema & Relationships
 
 - **USER (1) ──< (N) FARM**
 - **FARM (1) ──< (N) CROP**
@@ -131,7 +131,7 @@ farmer-expense-crop-tracker/
 
 ---
 
-## 🔑 Key Financial Formulas
+##  Key Financial Formulas
 
 $$\text{Total Expense} = \sum \text{Expenses for Crop}$$
 
@@ -145,7 +145,7 @@ $$\text{ROI (\%)} = \left( \frac{\text{Total Income} - \text{Total Expense}}{\te
 
 ---
 
-## 🛠 Local Setup Instructions (Without Docker)
+## Local Setup Instructions (Without Docker)
 
 ### 1. Prerequisites
 - Python 3.10+
@@ -191,7 +191,7 @@ Visit `http://localhost:5173` in your browser.
 
 ---
 
-## 🔑 Demo Login Credentials
+##  Demo Login Credentials
 
 ```text
 Email:    demo@farmertrack.com
@@ -200,7 +200,7 @@ Password: Demo@123
 
 ---
 
-## 🐳 Docker Setup (Production Mode)
+## Docker Setup (Production Mode)
 
 To launch the complete application stack (PostgreSQL + Flask + React Nginx) in Docker:
 
@@ -216,7 +216,7 @@ Access application:
 
 ---
 
-## 🧪 Running Automated Tests
+##  Running Automated Tests
 
 ```bash
 # Run backend pytest suite
@@ -226,7 +226,7 @@ python -m pytest tests/
 
 ---
 
-## 📝 API Endpoints Summary
+## API Endpoints Summary
 
 ### **Auth**
 - `POST /api/auth/register`
@@ -258,6 +258,3 @@ python -m pytest tests/
 - `GET /api/reports/income` (Supports `?format=csv`)
 
 ---
-
-## 📜 License
-MIT License. Built for agricultural productivity and portfolio showcase.
